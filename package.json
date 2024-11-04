@@ -1,0 +1,25 @@
+{
+  "name": "com.exerussus.ecsmodule.cartooncharacters",
+  "version": "1.0.0",
+  "displayName": "Cartoon Characters",
+  "description": "Модуль для 1EasyEcs",
+  "unity": "2020.3",
+  "dependencies": {},
+  "keywords": [
+    "leoecslite",
+    "leoecs",
+    "ecs",
+    "performance",
+    "1easyecs",
+    "easyecsmodules",
+    "exerussus"
+  ],
+  "author": {
+    "name": "Exerussus",
+    "email": "solovyov.production@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/exerussus/ecsmodule-cartooncharacters.git"
+  }
+}
