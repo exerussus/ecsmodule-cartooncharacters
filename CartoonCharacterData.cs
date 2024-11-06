@@ -24,9 +24,9 @@ namespace ECS.Modules.Exerussus.CartoonCharacters
             public Vector2 Value;
         }
 
-        public struct Jumping : IEcsComponent
+        public struct JumpingProcess : IEcsComponent
         {
-            
+            public float TimeRemaining;
         }
 
         public struct AttackAnimationProcess : IEcsComponent

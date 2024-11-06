@@ -10,16 +10,30 @@ namespace ECS.Modules.Exerussus.CartoonCharacters.Systems
         private EcsFilter _viewFilter;
         private EcsFilter _attackAnimationProcessFilter;
         private EcsFilter _bowShootAnimationProcessFilter;
+        private EcsFilter _jumpingProcessFilter;
         
         protected override void Initialize()
         {
             _viewFilter = World.Filter<CartoonCharacterData.CharacterApi>().End();
             _attackAnimationProcessFilter = World.Filter<CartoonCharacterData.AttackAnimationProcess>().End();
             _bowShootAnimationProcessFilter = World.Filter<CartoonCharacterData.BowShootAnimationProcess>().End();
+            _jumpingProcessFilter = World.Filter<CartoonCharacterData.JumpingProcess>().End();
         }
 
         protected override void Update()
         {
+            foreach (var entity in _jumpingProcessFilter)
+            {
+                ref var jumpingProcessData = ref Pooler.JumpingProcess.Get(entity);
+                jumpingProcessData.TimeRemaining -= DeltaTime;
+                if (jumpingProcessData.TimeRemaining <= 0)
+                {
+                    Pooler.JumpingProcess.Del(entity);
+                    ref var characterApiData = ref Pooler.CharacterApi.Get(entity);
+                    characterApiData.Value.SetAnimation(AnimationType.Fall);
+                }
+            }
+            
             foreach (var entity in _attackAnimationProcessFilter)
             {
                 ref var attackAnimationProcessData = ref Pooler.AttackAnimationProcess.Get(entity);
@@ -31,6 +45,7 @@ namespace ECS.Modules.Exerussus.CartoonCharacters.Systems
                     characterApiData.Value.SetAnimation(AnimationType.None);
                 }
             }
+            
             foreach (var entity in _bowShootAnimationProcessFilter)
             {
                 ref var bowShootAnimationProcessData = ref Pooler.BowShootAnimationProcess.Get(entity);
