@@ -30,7 +30,7 @@ namespace ECS.Modules.Exerussus.CartoonCharacters.Systems
                 {
                     Pooler.JumpingProcess.Del(entity);
                     ref var characterApiData = ref Pooler.CharacterApi.Get(entity);
-                    characterApiData.Value.SetAnimation(AnimationType.Fall);
+                    characterApiData.Value.SetAnimationFirstLayer(AnimationType.Fall);
                 }
             }
             
@@ -42,7 +42,7 @@ namespace ECS.Modules.Exerussus.CartoonCharacters.Systems
                 {
                     Pooler.AttackAnimationProcess.Del(entity);
                     ref var characterApiData = ref Pooler.CharacterApi.Get(entity);
-                    characterApiData.Value.SetAnimation(AnimationType.None);
+                    characterApiData.Value.SetAnimationSecondLayer(AnimationType.None);
                 }
             }
             
@@ -54,8 +54,8 @@ namespace ECS.Modules.Exerussus.CartoonCharacters.Systems
                 {
                     Pooler.BowShootAnimationProcess.Del(entity);
                     ref var characterApiData = ref Pooler.CharacterApi.Get(entity);
-                    if (Pooler.AimProcess.Has(entity)) characterApiData.Value.SetAnimation(AnimationType.AimBow);
-                    else characterApiData.Value.SetAnimation(AnimationType.None);
+                    if (Pooler.AimProcess.Has(entity)) characterApiData.Value.SetAnimationSecondLayer(AnimationType.AimBow);
+                    else characterApiData.Value.SetAnimationSecondLayer(AnimationType.None);
                 }
             }
             

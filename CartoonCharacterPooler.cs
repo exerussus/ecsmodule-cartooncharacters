@@ -53,14 +53,14 @@ namespace ECS.Modules.Exerussus.CartoonCharacters
             if (AimProcess.Has(entity))
             {
                 ref var bowShootAnimationProcess = ref BowShootAnimationProcess.AddOrGet(entity);
-                bowShootAnimationProcess.TimeRemaining = 0.25f;
-                characterData.Value.SetAnimation(AnimationType.ShotBow);
+                bowShootAnimationProcess.TimeRemaining = 0.22f;
+                characterData.Value.SetAnimationSecondLayer(AnimationType.ShotBow);
             }
             else
             {
                 ref var attackAnimationProcess = ref AttackAnimationProcess.AddOrGet(entity);
                 attackAnimationProcess.TimeRemaining = 0.40f;
-                characterData.Value.SetAnimation(_attackAnimations.GetRandomItem());
+                characterData.Value.SetAnimationFirstLayer(_attackAnimations.GetRandomItem());
             }
         }
         
@@ -71,7 +71,7 @@ namespace ECS.Modules.Exerussus.CartoonCharacters
             ref var characterApiData = ref CharacterApi.Get(entity);
             ref var jumpData = ref JumpingProcess.AddOrGet(entity);
             jumpData.TimeRemaining = 0.5f;
-            characterApiData.Value.SetAnimation(AnimationType.Jump);
+            characterApiData.Value.SetAnimationFirstLayer(AnimationType.Jump);
         }
         
         public void SetLooking(int entity, Vector2 direction)
@@ -115,28 +115,31 @@ namespace ECS.Modules.Exerussus.CartoonCharacters
             
             if (CrouchingMark.Has(entity))
             {
-                if (!MovingDirection.Has(entity)) characterData.Value.SetAnimation(AnimationType.Crouch);
+                if (!MovingDirection.Has(entity)) characterData.Value.SetAnimationFirstLayer(AnimationType.Crouch);
                 else
                 {
                     ref var movingData = ref MovingDirection.Get(entity);
-                    if (lookingData.IsRight == movingData.IsRight) characterData.Value.SetAnimation(AnimationType.Walk);
-                    else characterData.Value.SetAnimation(AnimationType.WalkBack);
+                    if (lookingData.IsRight == movingData.IsRight) characterData.Value.SetAnimationFirstLayer(AnimationType.Walk);
+                    else characterData.Value.SetAnimationFirstLayer(AnimationType.WalkBack);
                 }
             }
             else if (SprintingMark.Has(entity) && MovingDirection.Has(entity))
             {
                 ref var movingData = ref MovingDirection.Get(entity);
-                if (lookingData.IsRight == movingData.IsRight) characterData.Value.SetAnimation(AnimationType.Sprint);
-                else characterData.Value.SetAnimation(AnimationType.RunBack);
+                if (lookingData.IsRight == movingData.IsRight) characterData.Value.SetAnimationFirstLayer(AnimationType.Sprint);
+                else characterData.Value.SetAnimationFirstLayer(AnimationType.RunBack);
             }
             else
             {
-                if (!MovingDirection.Has(entity)) characterData.Value.SetAnimation(AnimationType.Idle);
+                if (!MovingDirection.Has(entity)) characterData.Value.SetAnimationFirstLayer(AnimationType.Idle);
                 else
                 {
                     ref var movingData = ref MovingDirection.Get(entity);
-                    if (lookingData.IsRight == movingData.IsRight) characterData.Value.SetAnimation(AnimationType.Run);
-                    else characterData.Value.SetAnimation(AnimationType.RunBack);
+                    if (lookingData.IsRight == movingData.IsRight)
+                    {
+                        characterData.Value.SetAnimationFirstLayer(AnimationType.Run);
+                    }
+                    else characterData.Value.SetAnimationFirstLayer(AnimationType.RunBack);
                 }
             }
         }
@@ -156,7 +159,7 @@ namespace ECS.Modules.Exerussus.CartoonCharacters
             lookingDirectionData.Value = direction;
             characterApiData.Value.SetAim(aimProcessData.Value);
             if(AttackAnimationProcess.Has(entity) || BowShootAnimationProcess.Has(entity) || JumpingProcess.Has(entity)) return;
-            characterApiData.Value.SetAnimation(AnimationType.AimBow);
+            characterApiData.Value.SetAnimationSecondLayer(AnimationType.AimBow);
         }
         
         public void SetCharacterAimStop(int entity)
@@ -167,7 +170,7 @@ namespace ECS.Modules.Exerussus.CartoonCharacters
             AimProcess.Del(entity);
             ref var characterApiData = ref CharacterApi.Get(entity);
             if(AttackAnimationProcess.Has(entity) || BowShootAnimationProcess.Has(entity) || JumpingProcess.Has(entity)) return;
-            characterApiData.Value.SetAnimation(AnimationType.None);
+            characterApiData.Value.SetAnimationSecondLayer(AnimationType.None);
         }
     }
 }

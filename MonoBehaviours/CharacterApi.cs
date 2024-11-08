@@ -39,6 +39,7 @@ namespace ECS.Modules.Exerussus.CartoonCharacters.MonoBehaviours
         [SerializeField] private Transform neckTransform;
         [SerializeField] private Weapon weaponInfo;
         [SerializeField] private Weapon bowInfo;
+        [SerializeField] private AnimationType currentAnimation;
         private CartoonCharacterPooler _pooler;
         private EcsPackedEntity _packedEntity;
 
@@ -73,9 +74,16 @@ namespace ECS.Modules.Exerussus.CartoonCharacters.MonoBehaviours
             characterViewer.UpdateView();
         }
 
-        public void SetAnimation(AnimationType animationType)
+        public void SetAnimationFirstLayer(AnimationType animationType)
         {
-            animator.Play(Animations[animationType]);
+            if(currentAnimation == animationType) return;
+            currentAnimation = animationType;
+            animator.CrossFade(Animations[animationType], 0.2f, 0);
+        }
+
+        public void SetAnimationSecondLayer(AnimationType animationType)
+        {
+            animator.CrossFade(Animations[animationType], 0.1f, 1);
         }
         
         public void SetEmote(EmotionType emotionType)
