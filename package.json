@@ -1,6 +1,6 @@
 {
   "name": "com.exerussus.ecsmodule.cartooncharacters",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "displayName": "Cartoon Characters",
   "description": "Модуль для 1EasyEcs",
   "unity": "2020.3",
