@@ -1,8 +1,8 @@
 ﻿
 using System.Collections.Generic;
 using CharacterCreator2D;
-using Exerussus._1Attributes;
 using Leopotam.EcsLite;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace ECS.Modules.Exerussus.CartoonCharacters.MonoBehaviours
