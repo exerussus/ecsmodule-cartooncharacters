@@ -12,25 +12,26 @@ namespace ECS.Modules.Exerussus.CartoonCharacters.MonoBehaviours
     {
         private static readonly int Aim = Animator.StringToHash("Aim");
 
-        private static readonly Dictionary<AnimationType, int> Animations = new Dictionary<AnimationType, int>
+        private static readonly Dictionary<AnimationType, int> Animations = new ()
         {
-            { AnimationType.None, Animator.StringToHash("None") },
-            { AnimationType.Idle, Animator.StringToHash("Idle") },
-            { AnimationType.Walk, Animator.StringToHash("Walk") },
-            { AnimationType.WalkBack, Animator.StringToHash("Walk Back") },
-            { AnimationType.Run, Animator.StringToHash("Run") },
-            { AnimationType.RunBack, Animator.StringToHash("Run Back") },
-            { AnimationType.Sprint, Animator.StringToHash("Sprint") },
-            { AnimationType.Jump, Animator.StringToHash("Jump") },
-            { AnimationType.Fall, Animator.StringToHash("Fall") },
-            { AnimationType.Hit, Animator.StringToHash("Hit") },
-            { AnimationType.Die, Animator.StringToHash("Die") },
-            { AnimationType.AimBow, Animator.StringToHash("Aim Bow") },
-            { AnimationType.ShotBow, Animator.StringToHash("Shot Bow") },
-            { AnimationType.Crouch, Animator.StringToHash("Crouch") },
-            { AnimationType.AttackMainHand1, Animator.StringToHash("Attack Main Hand 1") },
-            { AnimationType.AttackMainHand2, Animator.StringToHash("Attack Main Hand 2") },
-            { AnimationType.AttackMainHand3, Animator.StringToHash("Attack Main Hand 3") },
+            { AnimationType.None,            Animator.StringToHash(  "None")                },
+            { AnimationType.None,            Animator.StringToHash(  "None")                },
+            { AnimationType.Idle,            Animator.StringToHash(  "Idle")                },
+            { AnimationType.Walk,            Animator.StringToHash(  "Walk")                },
+            { AnimationType.WalkBack,        Animator.StringToHash(  "Walk Back")           },
+            { AnimationType.Run,             Animator.StringToHash(  "Run")                 },
+            { AnimationType.RunBack,         Animator.StringToHash(  "Run Back")            },
+            { AnimationType.Sprint,          Animator.StringToHash(  "Sprint")              },
+            { AnimationType.Jump,            Animator.StringToHash(  "Jump")                },
+            { AnimationType.Fall,            Animator.StringToHash(  "Fall")                },
+            { AnimationType.Hit,             Animator.StringToHash(  "Hit")                 },
+            { AnimationType.Die,             Animator.StringToHash(  "Die")                 },
+            { AnimationType.AimBow,          Animator.StringToHash(  "Aim Bow")             },
+            { AnimationType.ShotBow,         Animator.StringToHash(  "Shot Bow")            },
+            { AnimationType.Crouch,          Animator.StringToHash(  "Crouch")              },
+            { AnimationType.AttackMainHand1, Animator.StringToHash(  "Attack Main Hand 1")  },
+            { AnimationType.AttackMainHand2, Animator.StringToHash(  "Attack Main Hand 2")  },
+            { AnimationType.AttackMainHand3, Animator.StringToHash(  "Attack Main Hand 3")  },
         };
         
         [SerializeField] private CharacterViewer characterViewer;

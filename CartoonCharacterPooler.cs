@@ -23,10 +23,10 @@ namespace ECS.Modules.Exerussus.CartoonCharacters
             BowShootAnimationProcess = new(world);
         }
         
-        private Vector3 _left = new Vector3(-1, 1, 1);
-        private Vector3 _right = new Vector3(1, 1, 1);
+        private readonly Vector3 _left = new Vector3(-1, 1, 1);
+        private readonly Vector3 _right = new Vector3(1, 1, 1);
 
-        private AnimationType[] _attackAnimations = new AnimationType[]
+        private readonly AnimationType[] _attackAnimations = new AnimationType[]
         {
             AnimationType.AttackMainHand1,
             AnimationType.AttackMainHand2,
